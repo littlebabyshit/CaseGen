@@ -1,1 +1,5 @@
 /.idea/
+/tests/res/
+/tests/data/req_schema.json
+
+**/__pycache__/

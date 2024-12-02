@@ -1,0 +1,72 @@
+[
+  {
+    "index": 0,
+    "name": "httpbin",
+    "desc": null,
+    "add_time": 1732339984,
+    "up_time": 1732339984,
+    "list": [
+      {
+        "query_path": {
+          "path": "/get",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": true,
+        "res_body_is_json_schema": true,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 1072078,
+        "method": "GET",
+        "catid": 276299,
+        "title": "httpbinGET接口",
+        "path": "/get",
+        "project_id": 32290,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 34697,
+        "add_time": 1732339939,
+        "up_time": 1732339987,
+        "req_query": [],
+        "req_headers": [],
+        "req_body_form": [],
+        "__v": 0,
+        "desc": "",
+        "markdown": "",
+        "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{}}"
+      },
+      {
+        "query_path": {
+          "path": "/post",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": false,
+        "res_body_is_json_schema": false,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 1072085,
+        "method": "POST",
+        "catid": 276299,
+        "title": "httpbinPOST接口",
+        "path": "/post",
+        "project_id": 32290,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 34697,
+        "add_time": 1732340041,
+        "up_time": 1732340041,
+        "req_query": [],
+        "req_headers": [],
+        "req_body_form": [],
+        "__v": 0
+      }
+    ]
+  }
+]
