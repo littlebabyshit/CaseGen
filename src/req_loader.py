@@ -6,6 +6,8 @@ import json
 import random
 import string
 
+from rules import RULES_REGISTRY
+
 
 # 数据源加载策略接口
 class DataSourceLoader(ABC):
@@ -46,7 +48,6 @@ class YApiLoader(DataSourceLoader):
         required = req_schema.get("required")
         if required:
             body_test_data_list.extend(self.list_by_delete_required(required))
-
         return body_test_data_list
 
     def get_body_raw_data(self, schema):
@@ -56,9 +57,12 @@ class YApiLoader(DataSourceLoader):
         :return: 生成的测试数据
         """
 
-        def generate_by_type(field_type, field_length=None):
+        def generate_by_type(field_name, field_type, field_length=None):
             """根据字段类型生成对应的值"""
-            if field_type == "string":
+            # 如果字段名在业务规则中，则直接从业务规则中取值
+            if field_name in RULES_REGISTRY.keys():
+                return RULES_REGISTRY[field_name]().get_data()
+            elif field_type == "string":
                 return ''.join(random.choices(string.ascii_letters + string.digits, k=field_length or 10))
             elif field_type == "number":
                 return random.randint(10 ** (field_length - 1),
@@ -75,22 +79,21 @@ class YApiLoader(DataSourceLoader):
             """递归生成对象类型字段"""
             data = {}
             for field_name, field_info in schema.items():
+                #
                 field_type = field_info.get("type")
                 field_length = field_info.get("length", None)
-                # todo 字段描述，通常是对业务含义的补充。可以使用人工智能去做鉴定。
+                # todo 字段描述，通常是对业务含义的补充。后期可以使用人工智能去做鉴定。
                 description = field_info.get("description", None)
                 if field_type == "object":
                     # 递归处理 object 类型
                     properties = field_info.get("properties", {})
                     data[field_name] = recursive_generate(properties)
                 else:
-                    # todo : 直接生成非对象字段
-                    data[field_name] = generate_by_type(field_type, field_length)
+                    # todo : 未处理数组情况
+                    data[field_name] = generate_by_type(field_name,field_type, field_length)
             return data
 
         return recursive_generate(schema)
-
-    # todo ： 未考虑场景，有些字段为具有业务要求的字段。
     def list_by_delete_required(self, required_list):
         """
         列举出来所有删除掉必填字段的情况
