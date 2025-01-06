@@ -36,8 +36,9 @@ class YAPISourceAdapter(AbstractSourceAdapter):
         return Api(
             api_id=api_dict.get("_id"),
             api_name=api_dict.get("title"),
+            api_path=api_dict.get("path", ""),
             req=req,
-            res=res
+            res=res,
         )
 
 

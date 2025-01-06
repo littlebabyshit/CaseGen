@@ -1,0 +1,44 @@
+class {{api_name}}:
+    """
+    API Interface for {{api_name}}.
+    """
+    api_id = {{api_id}}
+    method = "{{method}}"
+    path = "{{path}}"
+    {{#headers}}headers = {
+        {{#headers}}
+        "{{key}}": "{{value}}"{{^last}}, {{/last}}
+        {{/headers}}
+    }
+    {{/headers}}
+    {{#files}}files = "{{files}}"{{/files}}
+    {{#data}}data = {
+        {{#data}}
+        "{{key}}": "{{value}}"{{^last}}, {{/last}}
+        {{/data}}
+    }
+    {{/data}}
+    {{#json}}json = {
+        {{#json}}
+        "{{key}}": "{{value}}"{{^last}}, {{/last}}
+        {{/json}}
+    }
+    {{/json}}
+    {{#params}}params = {
+        {{#params}}
+        "{{key}}": "{{value}}"{{^last}}, {{/last}}
+        {{/params}}
+    }
+    {{/params}}
+    {{#auth}}auth = {
+        {{#auth}}
+        "{{key}}": "{{value}}"{{^last}}, {{/last}}
+        {{/auth}}
+    }
+    {{/auth}}
+    {{#cookies}}cookies = {
+        {{#cookies}}
+        "{{key}}": "{{value}}"{{^last}}, {{/last}}
+        {{/cookies}}
+    }
+    {{/cookies}}

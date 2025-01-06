@@ -1,7 +1,6 @@
-
-
 from pydantic import BaseModel
 from typing import Optional, Dict
+
 
 class Req(BaseModel):
     method: Optional[str] = None
@@ -15,7 +14,6 @@ class Req(BaseModel):
     cookies: Optional[Dict] = None
 
 
-
 class Res(BaseModel):
     body: Optional[str] = None
 
@@ -26,5 +24,8 @@ class Api(BaseModel):
     """
     api_id: int
     api_name: str
+    api_path: str
     req: Req
     res: Res
+    req_schema: str = None
+    res_schema: str = None

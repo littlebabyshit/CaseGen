@@ -11,6 +11,8 @@ def test_load_data_by_url():
 
 def test_load_data_by_schema():
     req_shcema = json.load(open("./res/req_schema.json"))
+    yapi_loader = YApiLoader()
+
     yapi_loader.load_data(schema = req_shcema)
     res = yapi_loader._load_data_by_schema(req_shcema)
     print(res)
